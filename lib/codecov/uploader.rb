@@ -444,6 +444,16 @@ class Codecov::Uploader
       }
     )
     response = retry_request(req, https)
+    p "######"
+    p "######"
+    p "######"
+    p response
+    p response.body
+    p response.body.lines[0]
+    p response.body.lines[1]
+    p "######"
+    p "######"
+    p "######"
     if !response&.code || response.code == '400'
       puts red(response&.body)
       return false
