@@ -401,11 +401,14 @@ class Codecov::Uploader
   def self.upload_to_codecov(ci, report)
     url = ENV['CODECOV_URL'] || 'https://codecov.io'
     is_enterprise = url != 'https://codecov.io'
-
+    p "##### before ###"
     params = build_params(ci)
+    p params
     params_secret_token = params.clone
     params_secret_token['token'] = 'secret'
-
+    p "$$$$$"
+    p params_secret_token
+    p "#####"
     query = URI.encode_www_form(params)
     query_without_token = URI.encode_www_form(params_secret_token)
 
