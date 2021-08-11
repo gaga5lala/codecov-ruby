@@ -444,6 +444,14 @@ class Codecov::Uploader
       }
     )
     response = retry_request(req, https)
+    p "#######"
+    p "#######"
+    p response
+    p response.body
+    p response.body.lines[0]
+    p response.body.lines[1]
+    p "#######"
+    p "#######"
     if !response&.code || response.code == '400'
       puts red(response&.body)
       return false
@@ -453,7 +461,7 @@ class Codecov::Uploader
     s3target = response.body.lines[1]
     puts [green('-> '), 'Uploading to'].join(' ')
     puts s3target
-
+    
     uri = URI(s3target)
     https = Net::HTTP.new(uri.host, uri.port)
     https.use_ssl = true
